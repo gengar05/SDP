@@ -1,7 +1,3 @@
-## 9.0 AI- och källredovisning
-
-Under arbetet har jag använt AI som ett hjälpmedel. Främst har jag använt det för att få hjälp med rapportens struktur och förklaringar av vissa begrepp. Jag har även använt AI för att få hjälp med att hitta källor med relevant information. Informationen jag har fått från AI har jag inte använt som fakta direkt, utan jag har kontrollerat innehållet och de källor som använts. Jag har även använt ytterligare källor för att kontrollera att informationen stämmer. Om information eller formuleringar från AI inte har stämt överens med informationen i caset har jag inte använt dem.
-
 ### Källförteckning
 
 BlueVoyant (u.å.). 8 Devastating Phishing Attack Examples and Prevention Tips.  
