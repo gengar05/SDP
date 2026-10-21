@@ -138,3 +138,17 @@ Jag har själv kört programmet i VS Code och jämfört resultaten med loggfiler
 Jag har använt AI-förslag som stöd och kontrollerat resultaten genom att köra programmet och jämföra rapporten med loggfilerna.
 
 Mer information om analys, evidens och tester finns i `docs/analysis.md`.
+
+## 9. Möjliga förbättringar
+
+Programmet fungerar med Dataset A, men det finns möjligheter att utveckla analysen vidare.
+
+I framtiden skulle jag vilja:
+
+- Validera IP-adresser mer noggrant.
+- Jämföra tidsstämplar för att undersöka om händelser hänger ihop.
+- Kontrollera IOC-adresser mot alla loggkällor.
+- Utöka brandväggsanalysen så att både DENY och DROP räknas.
+
+Dessa förbättringar skulle kunna göra analysen mer användbar för större dataset.
+
