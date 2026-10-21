@@ -142,3 +142,70 @@ for ip in sorted(ip_counts):
 
     if ip in suspicious_ips:
         print("IOC-matchning:", ip)
+
+
+OUTPUT_DIR.mkdir(exist_ok=True)
+
+with open(REPORT_FILE, "w", encoding="utf-8") as file:
+    file.write("SECURITY AUTOMATION REPORT\n")
+    file.write("Dataset: A - Basic\n\n")
+
+    file.write("AUTENTISERINGSANALYS\n")
+    file.write(f"Antal loggrader: {len(lines)}\n")
+    file.write(f"Misslyckade inloggningar: {failed_logins}\n")
+
+    for ip in sorted(ip_counts):
+        file.write(f"{ip}: {ip_counts[ip]}\n")
+
+    file.write("\nIOC-MATCHNINGAR\n")
+
+    for ip in ioc_matches:
+        file.write(f"{ip}: MATCHNING\n")
+
+    file.write("\nWEBBANALYS\n")
+    file.write(f"Antal loggrader: {len(access_lines)}\n")
+
+    for status in sorted(status_counts):
+        file.write(f"HTTP {status}: {status_counts[status]}\n")
+
+    file.write("\nBRANDVÄGGSANALYS\n")
+    file.write(f"Antal loggrader: {len(firewall_lines)}\n")
+    file.write(f"Nekade anslutningar: {denied_connections}\n")
+
+    file.write("\nKORRELATION MELLAN LOGGFILER\n")
+
+    for ip in sorted(correlations):
+        sources = correlations[ip]
+        file.write(f"{ip}: {', '.join(sources)}\n")
+
+        if ip in suspicious_ips:
+            file.write(f"IOC-matchning: {ip}\n")
+
+    file.write("\nDATAKVALITET\n")
+    file.write(f"Rader med felaktig käll-IP: {invalid_lines}\n")
+
+    file.write("\nOBSERVATION\n")
+
+    if ioc_matches:
+        file.write(
+            f"Antal IP-adresser med IOC-matchning: {len(ioc_matches)}\n"
+        )
+    else:
+        file.write("Inga IOC-matchningar hittades.\n")
+
+    for ip in sorted(correlations):
+        sources = correlations[ip]
+
+        if len(sources) > 1:
+            file.write(
+                f"{ip} förekommer i {len(sources)} loggkällor: "
+                f"{', '.join(sources)}.\n"
+            )
+
+    file.write("\nBEGRÄNSNING\n")
+    file.write(
+        "En IOC-matchning eller förekomst i flera loggar "
+        "bevisar inte att en IP-adress tillhör en angripare.\n"
+    )
+
+print("\nRapport skapad:", REPORT_FILE)
