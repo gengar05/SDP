@@ -1,0 +1,40 @@
+SECURITY AUTOMATION REPORT
+==========================
+Dataset: A - Basic
+
+AUTENTISERINGSANALYS
+Antal loggrader: 6
+Misslyckade inloggningar: 4
+198.51.100.44: 1
+203.0.113.15: 3
+
+IOC-MATCHNINGAR
+198.51.100.44: MATCHNING
+203.0.113.15: MATCHNING
+
+WEBBANALYS
+Antal loggrader: 4
+HTTP 200: 1
+HTTP 401: 2
+HTTP 404: 1
+
+BRANDVÄGGSANALYS
+Antal loggrader: 3
+Nekade anslutningar: 1
+
+KORRELATION MELLAN LOGGFILER
+198.51.100.44: auth.log, access.log
+IOC-matchning: 198.51.100.44
+203.0.113.15: auth.log, access.log, firewall.log
+IOC-matchning: 203.0.113.15
+
+DATAKVALITET
+Rader med felaktig käll-IP: 1
+
+OBSERVATION
+Antal IP-adresser med IOC-matchning: 2
+198.51.100.44 förekommer i 2 loggkällor: auth.log, access.log.
+203.0.113.15 förekommer i 3 loggkällor: auth.log, access.log, firewall.log.
+
+BEGRÄNSNING
+En IOC-matchning eller förekomst i flera loggar bevisar inte att en IP-adress tillhör en angripare.
