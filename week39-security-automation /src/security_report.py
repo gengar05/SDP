@@ -122,3 +122,23 @@ print("\nBRANDVÄGGSANALYS")
 print("Antal loggrader:", len(firewall_lines))
 print("Nekade anslutningar:", denied_connections)
 
+
+correlations = {}
+
+print("\nKORRELATION MELLAN LOGGFILER")
+
+for ip in sorted(ip_counts):
+    sources = ["auth.log"]
+
+    if ip in access_ips:
+        sources.append("access.log")
+
+    if ip in firewall_ips:
+        sources.append("firewall.log")
+
+    correlations[ip] = sources
+
+    print(ip, "förekommer i:", ", ".join(sources))
+
+    if ip in suspicious_ips:
+        print("IOC-matchning:", ip)
