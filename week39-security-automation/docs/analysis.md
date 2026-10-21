@@ -271,3 +271,31 @@ Kontrollen gäller de resultat som visas i rapporten. Den bevisar inte att progr
 Jag har använt AI som stöd för Pythonkod, felsökning och dokumentationens struktur. AI har hjälpt mig med förslag på hur programmet kan struktureras, hur felhanteringen kan förbättras och hur olika testfall kan genomföras.
 
 Jag har själv kört programmet i VS Code, genomfört testerna och kontrollerat resultaten mot loggfilerna. AI har också varit ett stöd för att strukturera analysen utifrån uppgiftens krav.
+
+
+## 9. Förslag på fortsatt utveckling
+
+Utifrån analysen och testerna finns det några förbättringar som skulle kunna göra programmet mer tillförlitligt.
+
+### Bättre datavalidering
+
+Programmet identifierar vissa saknade eller tomma käll-IP-adresser. En förbättring vore att även kontrollera att IP-adresserna har ett giltigt format.
+
+### Tidsbaserad korrelation
+
+Programmet jämför IP-adresser mellan loggkällor men undersöker inte hur nära händelserna ligger varandra i tid.
+
+Genom att jämföra tidsstämplar skulle det bli lättare att bedöma om händelserna kan höra ihop.
+
+### Utökad IOC-matchning
+
+I den nuvarande versionen utgår IOC-matchningen från IP-adresser med misslyckade inloggningar.
+
+En förbättring vore att även kontrollera samtliga IP-adresser i webb- och brandväggsloggarna.
+
+### Utökad brandväggsanalys
+
+Programmet räknar DENY-händelser men inte DROP-händelser i samma räknare.
+
+En framtida version skulle kunna redovisa båda händelsetyperna separat.
+
