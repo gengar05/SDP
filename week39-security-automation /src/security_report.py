@@ -70,3 +70,55 @@ print("\nIOC-MATCHNINGAR")
 for ip in ioc_matches:
     print(ip, "- MATCHNING")
 
+
+with open(ACCESS_FILE, "r", encoding="utf-8") as file:
+    access_lines = file.readlines()
+
+status_counts = {}
+access_ips = set()
+
+for line in access_lines:
+    if "src=" in line:
+        ip_parts = line.split("src=")[1].split()
+
+        if ip_parts:
+            access_ips.add(ip_parts[0])
+
+    if "status=" in line:
+        status_parts = line.split("status=")[1].split()
+
+        if status_parts:
+            status = status_parts[0]
+
+            if status in status_counts:
+                status_counts[status] += 1
+            else:
+                status_counts[status] = 1
+
+print("\nWEBBANALYS")
+print("Antal loggrader:", len(access_lines))
+
+for status in sorted(status_counts):
+    print("HTTP", status, ":", status_counts[status])
+
+
+with open(FIREWALL_FILE, "r", encoding="utf-8") as file:
+    firewall_lines = file.readlines()
+
+denied_connections = 0
+firewall_ips = set()
+
+for line in firewall_lines:
+    if "src=" in line:
+        ip_parts = line.split("src=")[1].split()
+
+        if ip_parts:
+            firewall_ips.add(ip_parts[0])
+
+    if "DENY" in line.split():
+        denied_connections += 1
+
+print("\nBRANDVÄGGSANALYS")
+print("Antal loggrader:", len(firewall_lines))
+print("Nekade anslutningar:", denied_connections)
+
