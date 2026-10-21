@@ -48,3 +48,25 @@ for ip in sorted(ip_counts):
     print(ip, ":", ip_counts[ip])
 
 print("Rader med felaktig käll-IP:", invalid_lines)
+
+
+suspicious_ips = set()
+
+with open(IOC_FILE, "r", encoding="utf-8") as file:
+    for line in file:
+        ip = line.strip()
+
+        if ip:
+            suspicious_ips.add(ip)
+
+ioc_matches = []
+
+for ip in sorted(ip_counts):
+    if ip in suspicious_ips:
+        ioc_matches.append(ip)
+
+print("\nIOC-MATCHNINGAR")
+
+for ip in ioc_matches:
+    print(ip, "- MATCHNING")
+
